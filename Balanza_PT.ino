@@ -24,7 +24,7 @@ void setup() {
 
 void loop() {
 
-  Serial.print("Valor de lectura: t");
+  Serial.print("Valor de lectura: Kg");
   Serial.println(balanza.get_value(10),0);
   delay(100);
 }
