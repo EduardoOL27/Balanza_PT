@@ -17,7 +17,7 @@ void setup() {
   Serial.println(balanza.read());
   Serial.println("No ponga ningún objeto sobre la balanza");
   Serial.println("Destarando...");
-  balanza.set_scale(); //La escala por defecto es 1
+  balanza.set_scale(73095.04); //La escala por defecto es 1
   balanza.tare(20);  //El peso actual es considerado Tara.
   Serial.println("Coloque sobre la balanza un peso conocido:");
 }
