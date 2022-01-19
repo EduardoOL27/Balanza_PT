@@ -14,8 +14,10 @@ const int Pin_SCK3 = 12;
 
 const int piezas1P;
 const int piezas2P;
+const float Cable;
 const int interruptor1P = 0.136; //peso por unidad en gramos. 
 const int Interruptor2P = 0.272; //peso por unidad en gramos.
+const int Cablethw = 
 
 HX711 balanza1;
 HX711 balanza2;
@@ -56,7 +58,7 @@ if (balanza1.wait_ready_timeout(1000)) {
     delay(2000);
 }
   
-if (balanza1.wait_ready_timeout(1000)) {
+if (balanza2.wait_ready_timeout(1000)) {
     float peso2 = balanza2.get_units(20);
     piezas2P = peso2 / interruptor2P;
       Serial.println("La bascula 2 tiene: ");
@@ -67,13 +69,14 @@ if (balanza1.wait_ready_timeout(1000)) {
     delay(2000);
 }
 
-// (loadcell.wait_ready_timeout(1000)) {
-    //long peso3 = balanza3.get_units(20),3);
-    //Serial.print("Valor de lectura de la balanza 3 es:");
-    //Serial.println(peso3, 3);
-    //Serial.println(" Kg");
-//} else {
-    //Serial.println("HX711 no encontrado.");
-    //delay(2000);
-//}
+if (balanza3.wait_ready_timeout(1000)) {
+    float peso3 = balanza3.get_units(20);
+    Cable = peso3 / Cablethw;
+      Serial.println("La bascula 3 tiene: ");
+      Serial.print(Cable,2);
+      Serial.println(" Metros");
+} else {
+    Serial.println("HX711 no encontrado.");
+    delay(2000);
+}
 }
