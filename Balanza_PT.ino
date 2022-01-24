@@ -12,12 +12,12 @@ const int Pin_SCK2 = 15;
 const int Pin_DT3 = 13;
 const int Pin_SCK3 = 12;
 
-const int piezas1P;
-const int piezas2P;
-const float Cable;
+int piezas1P;
+int piezas2P;
+float Cable;
 const int interruptor1P = 0.136; //peso por unidad en gramos. 
-const int Interruptor2P = 0.272; //peso por unidad en gramos.
-const int Cablethw = 
+const int interruptor2P = 0.272; //peso por unidad en gramos.
+const int Cablethw = 0;
 
 HX711 balanza1;
 HX711 balanza2;
@@ -37,7 +37,7 @@ void setup() {
   Serial.println("No ponga ningún objeto sobre la balanza");
   Serial.println("Destarando...");
   balanza1.set_scale(243196.7814); //La escala por defecto es 1
-  balanza2.set_scale(276791.0794); //La escala por defecto es 1
+  balanza2.set_scale(246630.719); //La escala por defecto es 1
   balanza3.set_scale(); //La escala por defecto es 1
   balanza1.tare(20);  //El peso actual es considerado Tara.
   balanza2.tare(20);  //El peso actual es considerado Tara.
@@ -50,7 +50,7 @@ void loop() {
 if (balanza1.wait_ready_timeout(1000)) {
     float peso1 = balanza1.get_units(20);
     piezas1P = peso1 / interruptor1P;
-      Serial.println("La bascula 2 tiene: ");
+      Serial.println("La bascula 1 tiene: ");
       Serial.print(piezas1P);
       Serial.println(" Unidades");
 } else {
@@ -65,18 +65,18 @@ if (balanza2.wait_ready_timeout(1000)) {
       Serial.print(piezas2P);
       Serial.println(" Unidades");
 } else {
-    Serial.println("HX711 no encontrado.");
-    delay(2000);
+    //Serial.println("HX711 no encontrado.");
+    //delay(2000);
 }
 
-if (balanza3.wait_ready_timeout(1000)) {
-    float peso3 = balanza3.get_units(20);
-    Cable = peso3 / Cablethw;
-      Serial.println("La bascula 3 tiene: ");
-      Serial.print(Cable,2);
-      Serial.println(" Metros");
-} else {
-    Serial.println("HX711 no encontrado.");
-    delay(2000);
-}
+//if (balanza3.wait_ready_timeout(1000)) {
+    //float peso3 = balanza3.get_units(20);
+    //Cable = peso3 / Cablethw;
+      //Serial.println("La bascula 3 tiene: ");
+      //Serial.print(Cable,2);
+      //Serial.println(" Metros");
+//} else {
+    //Serial.println("HX711 no encontrado.");
+    //delay(2000);
+//}
 }
